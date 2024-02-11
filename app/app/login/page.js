@@ -6,6 +6,19 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect, useState } from "react";
 
+const getURL = () => {
+  let url =
+    process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
+    process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
+    "http://localhost:3000/";
+  // Make sure to include `https://` when not localhost.
+  url = url.includes("http") ? url : `https://${url}`;
+  // Make sure to include a trailing `/`.
+  url = url.charAt(url.length - 1) === "/" ? url : `${url}/`;
+  url += "auth/callback";
+  return url;
+};
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +75,7 @@ export default function LoginPage() {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           providers={["kakao"]}
-          redirectTo={redirectURL}
+          redirectTo={getURL()}
           className="mb-4 w-full p-3 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
       </div>
