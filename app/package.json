@@ -11,7 +11,12 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.1.0"
+    "next": "14.1.0",
+    "@supabase/auth-helpers-nextjs": "^0.9.0",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/supabase-js": "^2.39.3",
+    "npm": "^10.4.0",
+    "npx": "^10.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
