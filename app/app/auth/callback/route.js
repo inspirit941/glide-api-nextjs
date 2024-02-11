@@ -11,5 +11,5 @@ export async function GET(request) {
     await supabase.auth.exchangeCodeForSession(code); // code 있을 경우, cookie 사용한 session 생성.
   }
   // back to our application -> 로그인 이후 떨어져야 하는 페이지는 여길 바꾸면 된다.
-  return NextResponse.redirect(requestUrl.origin);
+  return NextResponse.redirect(requestUrl.origin + "/success");
 }
