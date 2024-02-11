@@ -54,7 +54,7 @@ export default function LoginPage() {
   // const handleSignOut = async () => {
   //   await supabase.auth.signOut();
   // };
-
+  const redirectURL = process.env.REDIRECT_URL;
   return (
     <main className="h-screen flex items-center justify-center bg-gray-800 p-6">
       <div className="bg-gray-900 p-8 rounded-lg shadow-md w-96">
@@ -62,6 +62,7 @@ export default function LoginPage() {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           providers={["kakao"]}
+          redirectTo={redirectURL}
           className="mb-4 w-full p-3 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
         />
       </div>

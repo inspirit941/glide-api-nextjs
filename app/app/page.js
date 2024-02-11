@@ -1,6 +1,30 @@
+"use client";
+
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  // const [user, setUser] = useState({});
+  // const supabase = createClientComponentClient({
+  //   supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  //   supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  // });
+
+  // useEffect(() => {
+  //   async function getUserData() {
+  //     await supabase.auth.getUser().then((value) => {
+  //       // value.data.user
+  //       if (value.data?.user) {
+  //         console.log(value.data.user);
+  //         setUser(value.data.user);
+  //       }
+  //     });
+  //   }
+  //   getUserData();
+  // }, []);
+
+  console.log();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
