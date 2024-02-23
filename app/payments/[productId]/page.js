@@ -2,7 +2,6 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
-import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
