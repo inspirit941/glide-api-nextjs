@@ -12,12 +12,12 @@
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/supabase-js": "^2.39.7",
+    "axios": "^1.6.7",
     "next": "14.1.0",
     "npm": "^10.4.0",
     "npx": "^10.2.2",
     "react": "^18",
-    "react-dom": "^18",
-    "undici": "^6.6.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/react": "18.2.57",
