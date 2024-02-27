@@ -23,6 +23,7 @@ export async function postRequest(url, headers, data) {
     headers: headers,
     method: 'POST',
     data: data,
+    validateStatus: () => true,
   });
   return response
 }

@@ -9,14 +9,18 @@ import Image from "next/image";
 
 export default function Page({ params }) {
   const [data, setData] = useState(params.productId);
-  const handleClick = async () => {
-    await fetch(process.env.NEXT_PUBLIC_BASEURL + "/api/payment/ready", {
+  const handleClick = async (event) => {
+    // event.preventDefault()
+    // todo: 여기서 api 요청보낼 때 param 값 포함하기.
+    const res = await fetch(process.env.NEXT_PUBLIC_BASEURL + "/api/payment/kakao/ready", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
       body: JSON.stringify(data),
     });
+    const toJson = await res.json()
+    window.open(toJson.url);
   };
   return (
     <div>
