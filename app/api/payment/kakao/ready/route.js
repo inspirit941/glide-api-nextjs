@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse, userAgent } from "next/server";
 import { postRequest } from '../../../../utils/request'
-import supabase from '../../../../utils/supabase'
+import supabase from '../../../../database/supabase'
 
 export async function POST(request) {
   const payload = await request.json();
