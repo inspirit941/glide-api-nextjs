@@ -1,21 +1,25 @@
 import { NextRequest, NextResponse, userAgent } from "next/server";
 import { postRequest } from '../../../../utils/request'
-import supabase from '../../../../database/supabase'
+import {getSupabaseClient} from '../../../../database/supabase'
 
 export async function POST(request) {
   const payload = await request.json();
-  console.log(request);
-  console.log("payload: " + payload);
+  const name = payload.name;
+  const price = payload.price;
+  const vat_price = payload.price * 0.1
+  // console.log(request);
+  // const asdf = JSON.parse(payload)
+  // console.log(payload);
 
   const url = "https://open-api.kakaopay.com/online/v1/payment/ready";
   const data = {
     cid: process.env.NEXT_PUBLIC_SINGLE_PAYMENT_CID,
     partner_order_id: "partner_order_id",
     partner_user_id: "partner_user_id",
-    item_name: "테스트",
+    item_name: name,
     quantity: "1",
-    total_amount: "2200",
-    vat_amount: "200",
+    total_amount: price + vat_price,
+    vat_amount: vat_price,
     tax_free_amount: "0",
     approval_url: process.env.NEXT_PUBLIC_BASEURL + "/api/payment/kakao/success",
     fail_url: "https://developers.kakao.com/fail",
