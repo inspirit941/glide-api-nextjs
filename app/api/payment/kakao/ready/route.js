@@ -7,9 +7,6 @@ export async function POST(request) {
   const name = payload.name;
   const price = payload.price;
   const vat_price = payload.price * 0.1
-  // console.log(request);
-  // const asdf = JSON.parse(payload)
-  // console.log(payload);
 
   const url = "https://open-api.kakaopay.com/online/v1/payment/ready";
   const data = {
@@ -33,7 +30,29 @@ export async function POST(request) {
   const result = await response;
   // console.log(result.data);
   // DB에 결제 고유번호 (tid) 를 추가한다.
-  // const { inserted , error } = supabase.from("payment").insert({"tid": result.data.tid, "type":"kakao"})
+  if (result.status === 200) {
+    const tid = result.data.tid;
+    console.log(tid);
+    const client = getSupabaseClient();
+    const insertResult = await client.from("payment").insert({"tid": result.data.tid, "type":"kakao"})
+    // result struct -> {
+    //   error: null,
+    //       data: null,
+    //     count: null,
+    //     status: 201,
+    //     statusText: 'Created'
+    // }
+    // DB에 저장 안되면, fail url을 리턴해줘야 한다
+    if (insertResult.status !== 201) {
+      console.log(insertResult.error);
+      return NextResponse.json({
+        "url": data.fail_url,
+        "message": "서버가 불안정하여 결제가 실패하였습니다. 관리자에게 문의해주세요."
+      })
+    }
+
+  }
+  // const { inserted , error } =
 
   const {device} = userAgent(request)
 
