@@ -23,8 +23,8 @@ export async function POST(request) {
       process.env.NEXT_PUBLIC_BASEURL +
       "/api/payment/kakao/success?partner_order_id=" +
       partner_order_id,
-    fail_url: "https://developers.kakao.com/fail",
-    cancel_url: "https://developers.kakao.com/cancel",
+    fail_url: process.env.NEXT_PUBLIC_BASEURL + "/payments/fail",
+    cancel_url: process.env.NEXT_PUBLIC_BASEURL + "/payments/cancel",
   };
   const response = await postRequest(
     url,
