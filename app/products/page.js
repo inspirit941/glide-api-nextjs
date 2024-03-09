@@ -7,11 +7,6 @@ import Image from "next/image";
 import { getSupabaseClient } from "../database/supabase";
 
 // 모든 상황의 시작점.
-async function getProducts() {
-  const client = getSupabaseClient();
-  const data = await client.from("product").select("*");
-  return data.data;
-}
 
 export default function Page() {
   const [products, setProducts] = useState([]);
@@ -20,7 +15,16 @@ export default function Page() {
   // 페이지 로딩 시 DB에서 값을 가져옴
   useEffect(() => {
     const getProductsFromSupabase = async () => {
-      const products = await getProducts();
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_BASEURL + "/api/database/products",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const products = await res.json();
       if (products.length !== 0) {
         const result = [];
         for (const key in products) {
